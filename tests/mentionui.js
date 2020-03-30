@@ -499,14 +499,14 @@ describe( 'MentionUI', () => {
 				env.features.isRegExpUnicodePropertySupported = false;
 				createRegExp( '@', 2 );
 				sinon.assert.calledOnce( regExpStub );
-				sinon.assert.calledWithExactly( regExpStub, '(?:^|[ \\(\\[{"\'])([@])([_a-zA-ZÀ-ž0-9]{2,})$', 'u' );
+				sinon.assert.calledWithExactly( regExpStub, '(?:^|[ \\(\\[{"\'])([@])([\\S]{2,})$', 'u' );
 			} );
 
 			it( 'returns a ES2018 RegExp for browsers supporting Unicode punctuation groups', () => {
 				env.features.isRegExpUnicodePropertySupported = true;
 				createRegExp( '@', 2 );
 				sinon.assert.calledOnce( regExpStub );
-				sinon.assert.calledWithExactly( regExpStub, '(?:^|[ \\p{Ps}\\p{Pi}"\'])([@])([_\\p{L}\\p{N}]{2,})$', 'u' );
+				sinon.assert.calledWithExactly( regExpStub, '(?:^|[ \\p{Ps}\\p{Pi}"\'])([@])([\\S]{2,})$', 'u' );
 			} );
 		} );
 
@@ -1568,8 +1568,6 @@ describe( 'MentionUI', () => {
 				testExecuteKey( 'enter', keyCodes.enter, feedItems );
 
 				testExecuteKey( 'tab', keyCodes.tab, feedItems );
-
-				testExecuteKey( 'space', keyCodes.space, feedItems );
 			} );
 		} );
 
@@ -1720,8 +1718,6 @@ describe( 'MentionUI', () => {
 					testExecuteKey( 'enter', keyCodes.enter, issues );
 
 					testExecuteKey( 'tab', keyCodes.tab, issues );
-
-					testExecuteKey( 'space', keyCodes.space, issues );
 				} );
 			} );
 		} );
@@ -1845,8 +1841,6 @@ describe( 'MentionUI', () => {
 					testExecuteKey( 'enter', keyCodes.enter, issues );
 
 					testExecuteKey( 'tab', keyCodes.tab, issues );
-
-					testExecuteKey( 'space', keyCodes.space, issues );
 				} );
 
 				describe( 'mouse', () => {
