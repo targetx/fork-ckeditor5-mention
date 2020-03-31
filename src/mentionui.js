@@ -687,7 +687,7 @@ function createFeedCallback( feedItems ) {
 				return itemId.toLowerCase().includes( feedText.toLowerCase() );
 			} )
 			// Do not return more than 10 items.
-			.slice( 0, 10 );
+			.slice( 0, 100 );
 
 		return filteredItems;
 	};
